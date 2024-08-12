@@ -8,7 +8,9 @@
 <body>
     <h1><i>{{hostname}}</i></h1>
     <h2>This is a simple AWS app running on AutoScale Group server</h2>
-    <p>Infrastructure as Code TF S3 bucket list: </p>
+    <p>Infrastructure as Code TF </p>
+    <p> {{time}} </p>
+    <p>S3 bucket list: </p>
     {%for x in s3_bucket %}
         <p style="margin: 0;">{{x.key}}</p>
     {%endfor%}

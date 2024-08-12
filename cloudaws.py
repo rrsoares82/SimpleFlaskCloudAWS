@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import Flask, render_template
 import boto3
 import socket
@@ -13,4 +15,4 @@ def hello_world():
     s3_bucket = my_bucket.objects.all()
     hostname = socket.gethostname()
 
-    return render_template('index.html', hostname=hostname, s3_bucket=s3_bucket)
+    return render_template('index.html', hostname=hostname, s3_bucket=s3_bucket, time=datetime.now())
