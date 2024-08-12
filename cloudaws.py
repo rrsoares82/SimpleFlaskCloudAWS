@@ -11,8 +11,6 @@ def hello_world():
 
     my_bucket = s3.Bucket('s3-project-001-static')
     s3_bucket = my_bucket.objects.all()
-    for x in my_bucket.objects.all():
-        print(x.key)
     hostname = socket.gethostname()
 
     return render_template('index.html', hostname=hostname, s3_bucket=s3_bucket)
