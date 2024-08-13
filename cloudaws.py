@@ -12,11 +12,14 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
 
+
+ssm = boto3.client('ssm')
+
 # So bad, but need to make a fast deploy
 DB_USER = "postgres"
 DB_NAME = "postgres"
 DB_PASSWORD = "ABCD1234abcd#"
-DB_ENDPOINT = "db-01-project-001.cf8okiykw3of.sa-east-1.rds.amazonaws.com"
+DB_ENDPOINT = ssm.get_parameter(Name='db-endpoint').get('Parameter').get('Value')
 DB_PORT = "5432"
 
 
@@ -30,6 +33,7 @@ def index():
 
     s3 = boto3.resource('s3')
     s3_client = boto3.client('s3')
+
     bucket_name = 's3-project-001-static'
     con = psycopg2.connect(host=DB_ENDPOINT, database=DB_NAME, port=DB_PORT,
                            user=DB_USER, password=DB_PASSWORD)
