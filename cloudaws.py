@@ -13,7 +13,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__)
 
 
-ssm = boto3.client('ssm')
+ssm = boto3.client('ssm', region_name='sa-east-1')
 
 # So bad, but need to make a fast deploy
 DB_USER = "postgres"
