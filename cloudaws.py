@@ -22,6 +22,9 @@ DB_PORT = "5432"
 
 VERSION = '1.0.0'
 
+if not os.path.exists('tmp_img'):
+    os.mkdir('tmp_img')
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -37,9 +40,6 @@ def index():
     bucket_name = 's3-project-001-static'
     con = psycopg2.connect(host=DB_ENDPOINT, database=DB_NAME, port=DB_PORT,
                            user=DB_USER, password=DB_PASSWORD)
-
-    if not os.path.exists('tmp_img'):
-        os.mkdir('tmp_img')
 
     if request.method == 'POST':
         req = request.form.to_dict()
