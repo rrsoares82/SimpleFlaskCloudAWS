@@ -20,7 +20,7 @@ DB_PASSWORD = ssm.get_parameter(Name='db-password', WithDecryption=True).get('Pa
 DB_ENDPOINT = ssm.get_parameter(Name='db-endpoint').get('Parameter').get('Value')
 DB_PORT = "5432"
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 
 def allowed_file(filename):
