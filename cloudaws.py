@@ -38,8 +38,11 @@ def index():
     con = psycopg2.connect(host=DB_ENDPOINT, database=DB_NAME, port=DB_PORT,
                            user=DB_USER, password=DB_PASSWORD)
 
-    if not os.path.exists('tmp_img'):
-        os.mkdir('tmp_img')
+    try:
+        if not os.path.exists('tmp_img'):
+            os.mkdir('tmp_img')
+    except FileNotFoundError as fn:
+        print(fn)
 
     if request.method == 'POST':
         req = request.form.to_dict()
