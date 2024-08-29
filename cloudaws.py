@@ -14,10 +14,9 @@ app = Flask(__name__)
 
 ssm = boto3.client('ssm', region_name='sa-east-1')
 
-# So bad, but need to make a fast deploy
 DB_USER = ssm.get_parameter(Name='db-user').get('Parameter').get('Value')
 DB_NAME = ssm.get_parameter(Name='db-name').get('Parameter').get('Value')
-DB_PASSWORD = ssm.get_parameter(Name='db-password').get('Parameter').get('Value')
+DB_PASSWORD = ssm.get_parameter(Name='db-password', WithDecryption=True).get('Parameter').get('Value')
 DB_ENDPOINT = ssm.get_parameter(Name='db-endpoint').get('Parameter').get('Value')
 DB_PORT = "5432"
 

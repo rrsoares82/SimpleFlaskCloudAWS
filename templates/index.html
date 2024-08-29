@@ -4,29 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple AWS App</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/foundation.min.css')}}">
+    <script src="{{url_for('static', filename='js/jquery-3.7.1.js')}}"></script>
+    <script src="{{url_for('static', filename='js/foundation.min.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 </head>
 <body>
-    <h1><i>{{hostname}}</i></h1>
-    <h2>This is a simple AWS app running on AutoScale Group server</h2>
-    <p>Infrastructure as Code TF </p>
-    <p> {{time}} </p>
-    <form method="post" enctype=multipart/form-data>
-        <label for="name">Name: </label></label><input required name="name" id="name" type="text"></br>
-        <label for="file_img">Image: </label></label><input name="file_img"  id="file_img" type="file">
-        <input type="submit" value="send">
-    </form>
-    <p>S3 bucket list: </p>
-    {%for x in s3_bucket %}
-        <p style="margin: 0;">{{x.key}}</p>
-    {%endfor%}
+    <div class="main">
+        <h1><i>{{hostname}}</i></h1>
+        <h4>This is a simple AWS app running on AutoScale Group server</h2>
+        <p>Infrastructure as Code TF </p>
+        <label for="date_time">Date&Time request: </label><span id="date_time">{{time}}</span>
+        <fieldset class="fieldset">
+            <legend>Send file and write a name</legend>
+            <form method="post" enctype=multipart/form-data>
+                <label for="name">Name: </label></label><input required name="name" id="name" type="text">
+                <label for="file_img">Image: </label></label><input name="file_img"  id="file_img" type="file">
+                <input class="button" type="submit" value="send">
+            </form>
+        </fieldset>
+        <label>S3 bucket list: </label>
+        <hr>
+        {%for x in s3_bucket %}
+            <p style="margin: 0;">{{x.key}}</p>
+        {%endfor%}
 
-    <p>RDS Postgres user list: </p>
-    <ul>
-        {%for user in users %}
-        <li style="margin: 0;">{{user[0]}} - {{user[1]}}</li>
-        {%endfor%}        
-    </ul>
-    
-
+        <label>RDS Postgres user list: </label>
+        <hr>
+        <ul>
+            {%for user in users %}
+            <li style="margin: 0;">{{user[0]}} - {{user[1]}}</li>
+            {%endfor%}        
+        </ul>
+    </div>
 </body>
 </html>

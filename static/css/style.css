@@ -1,0 +1,18 @@
+.main {    
+    margin: 0 auto;
+    width: 50rem;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 2rem;
+}
+
+hr {
+    margin-top: 0;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1rem;
+}
