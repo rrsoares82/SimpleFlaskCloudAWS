@@ -13,7 +13,7 @@
     <div class="main">
         <h1><i>{{hostname}}</i></h1>
         <h4>This is a simple AWS app running on AutoScale Group server</h2>
-        <p>Infrastructure as Code TF </p>
+        <label for="version">Version: </label><span id="version">{{version}}</span>
         <label for="date_time">Date&Time request: </label><span id="date_time">{{time}}</span>
         <fieldset class="fieldset">
             <legend>Send file and write a name</legend>
@@ -26,14 +26,14 @@
         <label>S3 bucket list: </label>
         <hr>
         {%for x in s3_bucket %}
-            <p style="margin: 0;">{{x.key}}</p>
+            <p>{{x.key}}</p>
         {%endfor%}
 
         <label>RDS Postgres user list: </label>
         <hr>
         <ul>
             {%for user in users %}
-            <li style="margin: 0;">{{user[0]}} - {{user[1]}}</li>
+            <li>{{user[0]}} - {{user[1]}}</li>
             {%endfor%}        
         </ul>
     </div>

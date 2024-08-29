@@ -20,6 +20,8 @@ DB_PASSWORD = ssm.get_parameter(Name='db-password', WithDecryption=True).get('Pa
 DB_ENDPOINT = ssm.get_parameter(Name='db-endpoint').get('Parameter').get('Value')
 DB_PORT = "5432"
 
+VERSION = '1.0.0'
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -75,4 +77,5 @@ def index():
     s3_bucket = my_bucket.objects.all()
     hostname = socket.gethostname()
 
-    return render_template('index.html', hostname=hostname, s3_bucket=s3_bucket, time=datetime.now(), users=users)
+    return render_template('index.html', hostname=hostname, s3_bucket=s3_bucket, time=datetime.now(), users=users,
+                           version=VERSION)
